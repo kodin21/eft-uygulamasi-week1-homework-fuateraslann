@@ -24,7 +24,9 @@
         <input type="number" id="iban" style="margin: 10px" required ><br>
         <label for="para" style="font-size: 20px ;font-weight: bold; padding-left: 10px ; ">Para Miktarı :   </label> <br>
         <input type="number" id="para" style="margin: 10px" >
-        <button type="button" id = "gonder" disabled>Gönder</button>
+        <button type="button" id = "gonder" disabled>Gönder</button> <br>
+        <a id="sifre_iste" hidden > Telefonunuza Gelen Şifreyi Giriniz ve Enter'a basınız : </a>
+        <input type="number" id="sifre" style="margin : 10px" hidden min ="1000" max="9999">
     </form>
 
     <script src="index.js"></script>

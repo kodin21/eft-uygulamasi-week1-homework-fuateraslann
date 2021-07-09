@@ -1,11 +1,13 @@
 import { user_info } from './user_information';
-const timeOut = 60 * 1000 * 2;
-
+const time = 60 * 1000 * 2;
+let hesapSecildi =0 , iban_girildi =0 ,miktarUygun =0;
+let hesapOption;
+let yanlis_giris =0;
 /*window.addEventListener("load", ()=>{
     window.setTimeout(() => {
         alert("Oturumunuz sonlanmıştır");
         window.location.reload(true);
-    }, timeOut);
+    }, time);
 
 });*/
 for (let i = 0; i < user_info.accounts.length; i++) {
@@ -15,8 +17,7 @@ for (let i = 0; i < user_info.accounts.length; i++) {
     option.innerHTML = user_info.accounts[i].iban + "- "+ user_info.accounts[i].bakiye
     document.getElementById("dropdownMenu").appendChild(option)
 }
-let hesapSecildi =0 , iban_girildi =0 ,miktarUygun =0;
-let hesapOption;
+
 var hesapCntrl = document.getElementById("dropdownMenu");
 hesapCntrl.addEventListener("change", function() {
     if(hesapCntrl.value!==0)
@@ -41,8 +42,6 @@ ibanCntrl.addEventListener("change",function (){
 })
 let paraCntrl = document.getElementById("para");
 paraCntrl.addEventListener("change",function (){
-    console.log(paraCntrl.value)
-    console.log(hesapOption.value)
     if(paraCntrl.value < parseInt(hesapOption.value) )
         miktarUygun=1;
     else {
@@ -56,5 +55,33 @@ function butonAktif(){
         document.getElementById("gonder").disabled = false;
     else document.getElementById("gonder").disabled = true;
 }
+document.getElementById("gonder").addEventListener("click",function (){
+    if(paraCntrl.value<500){
+        alert("Başarılı")
+        location.reload();
+    }
+
+    else{
+        document.getElementById("sifre_iste").hidden=false;
+        document.getElementById("sifre").hidden=false;
+    }
+})
+let sifre  = document.getElementById("sifre")
+sifre.addEventListener("change",function (){
+
+    if(sifre.value == 1234) {
+        alert("Başarılı")
+        location.reload();
+    }
+    else{
+        yanlis_giris++;
+        if(yanlis_giris >3){
+            alert("Hesabınız bloke oldu")
+            location.reload();
+        }else alert("Şifre yanlış")
+    }
+})
+
+
 // Baska dosyadan calistirmak mumkun, dosyalari parcalamaktan korkmayin!
 // name
