@@ -3,13 +3,41 @@ const time = 60 * 1000 * 2;
 let hesapSecildi =0 , iban_girildi =0 ,miktarUygun =0;
 let hesapOption;
 let yanlis_giris =0;
-/*window.addEventListener("load", ()=>{
-    window.setTimeout(() => {
-        alert("Oturumunuz sonlanmıştır");
-        window.location.reload(true);
-    }, time);
+function startTimer(duration, display) {
+    var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+        diff = duration - (((Date.now() - start) / 1000) | 0);
 
-});*/
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (diff <= 0) {
+            start = Date.now() + 1000;
+        }
+        if(minutes==0 && seconds == 0){
+            alert("Oturumunuz Sonlandırılmıştır");
+            location.reload();
+        }
+
+    };
+    timer();
+    setInterval(timer, 1000);
+
+}
+
+window.onload = function () {
+    var twoMinutes = 60 * 2,
+        display = document.querySelector('#time');
+    startTimer(twoMinutes, display);
+};
 for (let i = 0; i < user_info.accounts.length; i++) {
     var option = document.createElement("option")
     var accounts = document.getElementById("dropdownMenu");
@@ -68,7 +96,6 @@ document.getElementById("gonder").addEventListener("click",function (){
 })
 let sifre  = document.getElementById("sifre")
 sifre.addEventListener("change",function (){
-
     if(sifre.value == 1234) {
         alert("Başarılı")
         location.reload();
