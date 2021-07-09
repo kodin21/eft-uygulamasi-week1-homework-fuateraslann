@@ -1,4 +1,4 @@
-import { name } from './example-other-file';
+import { user_info } from './user_information';
 const timeOut = 60 * 1000 * 2;
 
 /*window.addEventListener("load", ()=>{
@@ -8,7 +8,13 @@ const timeOut = 60 * 1000 * 2;
     }, timeOut);
 
 });*/
-
+for (let i = 0; i < user_info.accounts.length; i++) {
+    var option = document.createElement("option")
+    var accounts = document.getElementById("dropdownMenu");
+    option.value = user_info.accounts[i].bakiye;
+    option.innerHTML = user_info.accounts[i].iban + "- "+ user_info.accounts[i].bakiye
+    document.getElementById("dropdownMenu").appendChild(option)
+}
 let hesapSecildi =0 , iban_girildi =0 ,miktarUygun =0;
 let hesapOption;
 var hesapCntrl = document.getElementById("dropdownMenu");
